@@ -5,7 +5,7 @@ from books.models import Book, Author
 
 def books(request):
     books = Book.objects.all()
-    context = {'title': 'Books', 'books': books}
+    context = {'books': books}
     return render(request, 'book_list.html', context)
 
 
@@ -14,12 +14,17 @@ def authors(request):
     context = {'authors': authors}
     return render(request, 'author_list.html', context)
 
-def book(request, id):
+def book_detail(request, id):
     book = get_object_or_404(Book, id=id)
     context = {'book': book}
     return render(request, 'book_detail.html', context)
 
-def author(request, id):
+def author_detail(request, id):
     author = get_object_or_404(Author, id=id)
     context = {'author': author}
     return render(request, 'author_detail.html', context)
+
+def book_order(request):
+    books = Book.objects.all()
+    context = {'books': books}
+    return render(request, 'book_list_ordered.html', context)
