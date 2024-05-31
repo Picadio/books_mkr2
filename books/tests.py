@@ -16,14 +16,17 @@ class BooksTest(TestCase):
     def test_books_view(self):
         response = self.client.get(reverse("books:books"))
         self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "book_list.html")
 
     def test_author_detail_view(self):
         response = self.client.get("/authors/author_detail/1")
         self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "author_detail.html")
 
     def test_authors_view(self):
         response = self.client.get(reverse("books:authors"))
         self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "author_list.html")
 
     def test_books_ordered_view(self):
         response = self.client.get(reverse("books:books_ordered"))
@@ -32,3 +35,4 @@ class BooksTest(TestCase):
     def test_book_detail_view(self):
         response = self.client.get("/books/book_detail/1")
         self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "book_detail.html")
