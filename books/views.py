@@ -9,3 +9,7 @@ def books(request):
     return render(request, 'book_list.html', context)
 
 
+def authors(request):
+    authors = Author.objects.all()
+    context = {'authors': authors}
+    return render(request, 'author_list.html', context)
