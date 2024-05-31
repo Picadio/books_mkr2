@@ -10,6 +10,7 @@ def books(request):
 
 
 def authors(request):
+    Author.objects.create(name="ddaw", bio="hello world")
     authors = Author.objects.all()
     context = {'authors': authors}
     return render(request, 'author_list.html', context)
@@ -24,7 +25,7 @@ def author_detail(request, id):
     context = {'author': author}
     return render(request, 'author_detail.html', context)
 
-def book_order(request):
-    books = Book.objects.all()
+def books_ordered(request):
+    books = Book.objects.all().order_by('-title')
     context = {'books': books}
     return render(request, 'book_list_ordered.html', context)
